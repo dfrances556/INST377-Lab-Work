@@ -96,6 +96,7 @@ form {
   color: #4a4a4a;
 
   /* shapes */
+  border: 2px dashed;
   border-radius: 6px;
   font-size: 1.5rem;
   padding: 1.25rem;
@@ -160,6 +161,8 @@ form {
 .footer {
   flex-shrink: 0;
   padding: 1rem;
+  border: 2px dashed;
+  border-radius: 6px;
   background-color: rgba(20, 12, 70, 0.8);
   font-size: 1.2rem;
   font-weight: 600;
