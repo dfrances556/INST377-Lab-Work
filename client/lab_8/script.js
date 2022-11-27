@@ -83,6 +83,16 @@ function filterList(array, filterInputValue) {
     return lowerCaseName.includes(lowerCaseQuery);
   });
 }
+
+function initMap() {
+  console.log('initMap');
+  const map = L.map('map').setView([38.78, 76.87], 13);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+}
+
 async function mainEvent() {
   /*
       ## Main Event
@@ -92,6 +102,7 @@ async function mainEvent() {
     */
 
   // the async keyword means we can make API requests
+  const pageMap = initMap();
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
   const submit = document.querySelector('#get-resto'); // get a reference to your submit button
   const loadAnimation = document.querySelector('.lds-ellipsis');
