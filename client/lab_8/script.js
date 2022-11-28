@@ -93,8 +93,19 @@ function initMap() {
   }).addTo(map);
 }
 
-function markerplace() {
-  
+function markerPlace(array, map) {
+  console.log('markerPlace', array);
+  const marker = L.marker([51.5, -0.09]).addTo(map);
+  map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) {
+      layer.remove();
+    }
+  });
+  array.forEach((item) => {
+    const {coordinates} = item.geocoded_column_1;
+    console.log(item);
+    L.marker([coordinates[1], coordinates[0]]).addTo(map);
+  });
 }
 
 async function mainEvent() {
@@ -107,6 +118,7 @@ async function mainEvent() {
 
   // the async keyword means we can make API requests
   const pageMap = initMap();
+
   const form = document.querySelector('.main_form'); // get your main form so you can do JS with it
   const submit = document.querySelector('#get-resto'); // get a reference to your submit button
   const loadAnimation = document.querySelector('.lds-ellipsis');
@@ -149,6 +161,7 @@ async function mainEvent() {
     console.log(event.target.value);
     const filteredList = filterList(currentList, event.target.value);
     injectHTML(filteredList);
+    markerPlace(currentList, pageMap);
   });
 
   // And here's an eventListener! It's listening for a "submit" button specifically being clicked
@@ -163,6 +176,7 @@ async function mainEvent() {
 
     // And this function call will perform the "side effect" of injecting the HTML list for you
     injectHTML(currentList);
+    markerPlace(currentList, pageMap);
 
     // By separating the functions, we open the possibility of regenerating the list
     // without having to retrieve fresh data every time
