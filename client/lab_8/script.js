@@ -86,11 +86,15 @@ function filterList(array, filterInputValue) {
 
 function initMap() {
   console.log('initMap');
-  const map = L.map('map').setView([38.78, -76.87], 13);
+  const map = L.map('map').setView([38.98, -76.94], 13);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   }).addTo(map);
+}
+
+function markerplace() {
+  
 }
 
 async function mainEvent() {
